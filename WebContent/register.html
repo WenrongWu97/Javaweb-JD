@@ -1,0 +1,364 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>个人注册</title>
+<link href="css/jd.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/register.js"></script>
+<style type="text/css">
+/*已有账号请登录*/
+.font_1 {
+	font-size: 16px;
+	float: right;
+	margin-top: 50px;
+}
+
+.link_1 {
+	color: #EE2222;
+}
+
+.link_1:hover {
+	color: #C81623;
+	text-decoration: underline;
+}
+/*注册表单*/
+.left {
+	/*		border: 1px solid red;		*/
+	border-right: 1px solid #E6E6E6;
+	width: 700px;
+	overflow: hidden;
+	margin: 60px 0;
+	float: left;
+}
+
+.registrationForm {
+	/*		border: 1px solid red;		*/
+	width: 500px;
+	overflow: hidden;
+	margin: 0 100px;
+	font-size: 15px;
+}
+
+.registrationForm .li_1 {
+	border: 1px solid #E6E6E6;
+	width: 400px;
+	height: 50px;
+	margin-bottom: 10px;
+}
+
+.registrationForm .li_1:hover {
+	border: 1px solid #999999;
+}
+
+.registrationForm li div {
+	/*		border: 1px solid red;		*/
+	display: inline-block;
+	width: 80px;
+	margin-top: 13px;
+	margin-left: 13px;
+}
+
+.registrationForm li input {
+	width: 270px;
+	height: 28px;
+	border: none;
+}
+
+.registrationForm li input[type="submit"] {
+	width: 400px;
+	height: 50px;
+}
+
+.registrationForm .li_2 {
+	margin-bottom: 10px;
+	color: #FF9911;
+}
+
+.registrationForm .li_1 img {
+	margin-left: 5px;
+	vertical-align: middle;
+	display: none;
+}
+
+.registrationForm .li_2 img {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 5px 2px 0;
+}
+
+.link_3 {
+	color: #B61D1D;
+	font-size: 13px;
+}
+
+.link_3:hover {
+	text-decoration: underline;
+}
+/*企业用户国际站注册*/
+.right {
+	/*		border: 1px solid red;		*/
+	width: 200px;
+	overflow: hidden;
+	margin: 60px 100px;
+	float: left;
+}
+
+.otherRegistration {
+	/*		border: 1px solid red;		*/
+	width: 145px;
+	overflow: hidden;
+}
+
+.otherRegistration div {
+	margin: 20px auto;
+}
+
+.link_2 {
+	color: #333333;
+	font-size: 16px;
+	display: inline-block;
+	vertical-align: top;
+	margin: 5px 0 20px 10px;
+}
+
+.link_2:hover {
+	color: #C81623;
+}
+/*对话框*/
+#dialog {
+	border: 4px solid #C3C3C3;
+	border-radius: 5px;
+	width: 948px;
+	height: 590px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -300px 0 0 -474px;
+	background-color: #FFFFFF;
+	z-index: 100;
+	font-size: 14px;
+	display: none;
+}
+
+.dialogTitle {
+	color: #000000;
+	background-color: #F3F3F3;
+	font-weight: 700;
+	padding: 5px 10px;
+}
+
+.dialogContent {
+	/*		border: 1px solid red;		*/
+	height: 440px;
+	overflow-y: scroll;
+	margin: 20px;
+	font-size: 14px;
+	line-height: 150%;
+	text-decoration: underline;
+}
+
+.dialogContent p {
+	font-weight: bold;
+}
+
+.dialogContent a {
+	font-weight: bold;
+	color: red;
+	cursor: pointer;
+}
+
+.dialogContent ul {
+	overflow: hidden;
+}
+
+.dialogContent ul li {
+	/*		border: 1px solid red;		*/
+	float: left;
+	width: 400px;
+}
+/*遮蔽层*/
+#bg {
+	/*		border: 1px solid red;		*/
+	width: 100%;
+	height: 1000px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #000000;
+	opacity: 0.15;
+	filter: alpha(opacity = 15);
+	z-index: 10;
+	display: none;
+}
+</style>
+</head>
+
+<body onLoad="loadDialog()">
+	<div class="page">
+		<div class="header">
+			<div class="headerContent">
+				<img src="images/logo.png" alt="" />
+				<div class="welcome">欢迎注册</div>
+				<div class="font_1">
+					已有账号？ <a href="login.html" class="link_1">请登录&#62;</a>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="mainContent">
+				<div class="left">
+					<form action="maintain/RegisterServlet" method="post"
+						onSubmit="return validate()">
+						<ul class="registrationForm">
+							<li class="li_1">
+								<div style="letter-spacing: 10px;">用户名</div> <input
+								id="userName" type="text" name="userName"
+								placeholder="您的账户名和登录名" /> <img id="userNameSuccess"
+								src="images/√.png" alt="" />
+							</li>
+							<li id="userNameMsg" class="li_2">&nbsp;</li>
+							<li class="li_1">
+								<div style="letter-spacing: 3px;">设置密码</div> <input
+								id="password" type="password" name="password"
+								placeholder="建议至少使用两种字符组合" /> <img id="passwordSuccess"
+								src="images/√.png" alt="" />
+							</li>
+							<li id="passwordMsg" class="li_2">&nbsp;</li>
+							<li class="li_1">
+								<div style="letter-spacing: 3px;">确认密码</div> <input
+								id="repassword" type="password" name="repassword"
+								placeholder="请再次输入密码" /> <img id="repasswordSuccess"
+								src="images/√.png" alt="" />
+							</li>
+							<li id="repasswordMsg" class="li_2">&nbsp;</li>
+							<li class="li_1">
+								<div>中国 0086</div> <input id="phone" type="text" name="phone"
+								placeholder="建议使用常用手机" /> <img id="phoneSuccess"
+								src="images/√.png" alt="" />
+							</li>
+							<li id="phoneMsg" class="li_2">&nbsp;</li>
+							<li class="li_1">
+								<div style="letter-spacing: 10px;">验证码</div> <input
+								id="validateCode" style="width: 150px;" type="text"
+								name="validateCode" placeholder="验证码" /> <img
+								id="validateCodeImg" src="maintain/ValidateCodeServlet"
+								style="display: inline;" /> <a class="link_3"
+								href="javascript:getValidateCode()">看不清</a>
+							</li>
+							<li id="validateCodeMsg" class="li_2">&nbsp;</li>
+							<li style="border: none;"><input class="bt_1" type="submit"
+								value="立即注册" /></li>
+						</ul>
+					</form>
+				</div>
+				<div class="right">
+					<div class="otherRegistration">
+						<div style="border-bottom: 1px solid #E6E6E6;">
+							<img src="images/enterprise.png" alt="" /> <a href=""
+								class="link_2">企业用户注册</a>
+						</div>
+						<div>
+							<img src="images/international.png" alt="" /> <a href=""
+								class="link_2">国际站注册</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footerContent">
+				<ul class="menu">
+					<li><a href="">关于我们</a></li>
+					<li>|</li>
+					<li><a href="">联系我们</a></li>
+					<li>|</li>
+					<li><a href="">人才招聘</a></li>
+					<li>|</li>
+					<li><a href="">商家入驻</a></li>
+					<li>|</li>
+					<li><a href="">广告服务</a></li>
+					<li>|</li>
+					<li><a href="">手机京东</a></li>
+					<li>|</li>
+					<li><a href="">友情链接</a></li>
+					<li>|</li>
+					<li><a href="">销售联盟</a></li>
+					<li>|</li>
+					<li><a href="">京东社区</a></li>
+					<li>|</li>
+					<li><a href="">京东公益</a></li>
+					<li>|</li>
+					<li><a href="">English Site</a></li>
+				</ul>
+				<div class="copyright">Copyright &#169; 2004-2008 京东JD.com
+					版权所有</div>
+			</div>
+		</div>
+	</div>
+	<div id="dialog">
+		<div class="dialogTitle">
+			京东用户注册协议和隐私政策 <img src="images/close.png"
+				style="float: right; cursor: pointer; padding: 5px 10px;"
+				onClick="cancel()" alt="" />
+		</div>
+		<div class="dialogContent">
+			<p>
+				在您注册成为京东用户的过程中，您需要完成我们的注册流程并通过点击同意的形式在线签署以下协议，请您务必仔细阅读、充分理解协议中的条款内容后再点击同意（尤其是以粗体并下划线标识的条款，因为这些条款可能会明确您应履行的义务或对您的权利有所限制）：
+			</p>
+			<a href="">《京东注册协议》</a>
+			<ul>
+				<li>1、本站服务条款的确认和接纳</li>
+				<li>7、配送</li>
+				<li>2、本站服务</li>
+				<li>8、所有权及知识产权条框</li>
+				<li>3、用户信息</li>
+				<li>9、责任限制及不承诺担保</li>
+				<li>4、用户依法言行义务</li>
+				<li>10、协议变更及用户关注义务</li>
+				<li>5、商品信息</li>
+				<li>11、法律管辖和适用《京东隐私政策》</li>
+				<li>6、订单</li>
+			</ul>
+			<br> <a href="">隐私政策</a>
+			<p>
+				您注册成为京东用户的过程中，您需要完成我们的注册流程并通过点击同意的形式在线签署以下协议，请您务必仔细阅读、充分理解协议中的条款内容后再点击同意（尤其是以粗体并下划线标识的条款，因为这些条款可能会明确您应履行的义务或对您的权利有所限制）：
+				<br>
+				本隐私政策明确了我们的产品与/或服务所收集、使用及共享个人信息的类型方式和用途；以增强告知或即时提示的方式在收集、使用及共享个人信息时给予用户授权选择权，并在产品设置中允许用户即时撤销授权。明确了用户查询、更正和删除其个人信息的方式。增加了用户账户的锁定/解锁和注销功能，并提供给用户30日后悔器。具体提纲如下：
+			</p>
+			<ul>
+				<li>1、我们如何收集和使用您的个人信息</li>
+				<li>5、您如何管理个人信息</li>
+				<li>2、我们如何使用Cookie和同类技术</li>
+				<li>6、未成年人信息的保护</li>
+				<li>3、我们如何共享、转让、公开披露您的个人信息</li>
+				<li>7、通知和修订</li>
+				<li>4、我们如何保护和保存您的个人信息</li>
+				<li>8、如何联系我们</li>
+			</ul>
+			<br>
+			<p>
+				您注册成为京东用户的过程中，您需要完成我们的注册流程并通过点击同意的形式在线签署以下协议，请您务必仔细阅读、充分理解协议中的条款内容后再点击同意（尤其是以粗体并下划线标识的条款，因为这些条款可能会明确您应履行的义务或对您的权利有所限制）：
+				<br>
+				本隐私政策明确了我们的产品与/或服务所收集、使用及共享个人信息的类型方式和用途；以增强告知或即时提示的方式在收集、使用及共享个人信息时给予用户授权选择权，并在产品设置中允许用户即时撤销授权。明确了用户查询、更正和删除其个人信息的方式。增加了用户账户的锁定/解锁和注销功能，并提供给用户30日后悔器。具体提纲如下：
+			</p>
+			<br>
+			<p>
+				您注册成为京东用户的过程中，您需要完成我们的注册流程并通过点击同意的形式在线签署以下协议，请您务必仔细阅读、充分理解协议中的条款内容后再点击同意（尤其是以粗体并下划线标识的条款，因为这些条款可能会明确您应履行的义务或对您的权利有所限制）：
+				<br>
+				本隐私政策明确了我们的产品与/或服务所收集、使用及共享个人信息的类型方式和用途；以增强告知或即时提示的方式在收集、使用及共享个人信息时给予用户授权选择权，并在产品设置中允许用户即时撤销授权。明确了用户查询、更正和删除其个人信息的方式。增加了用户账户的锁定/解锁和注销功能，并提供给用户30日后悔器。具体提纲如下：
+			</p>
+			<br>
+			<p>
+				您注册成为京东用户的过程中，您需要完成我们的注册流程并通过点击同意的形式在线签署以下协议，请您务必仔细阅读、充分理解协议中的条款内容后再点击同意（尤其是以粗体并下划线标识的条款，因为这些条款可能会明确您应履行的义务或对您的权利有所限制）：
+				<br>
+				本隐私政策明确了我们的产品与/或服务所收集、使用及共享个人信息的类型方式和用途；以增强告知或即时提示的方式在收集、使用及共享个人信息时给予用户授权选择权，并在产品设置中允许用户即时撤销授权。明确了用户查询、更正和删除其个人信息的方式。增加了用户账户的锁定/解锁和注销功能，并提供给用户30日后悔器。具体提纲如下：
+			</p>
+		</div>
+		<button onClick="cancel()" class="bt_1"
+			style="width: 200px; height: 50px; background-color: #E6E6E6; color: #999999; margin: 0px 30px 0 250px;">取消</button>
+		<button onClick="agree()" class="bt_1"
+			style="width: 200px; height: 50px;">同意并继续</button>
+	</div>
+	<div id="bg"></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*通用样式*/
+*{margin: 0;padding: 0;}
+body{font:12px/1.5 Microsoft YaHei; color: #666666;}
+
+/*页面结构样式*/
+.page{width: 100%;}
+/*头部*/
+.header{width: 100%;color: #999999;background: url(../images/headbg.jpg) repeat-x left bottom;}
+.headerContent{width: 1200px;overflow: hidden;margin: 0 auto;}
+/*京东LOGO*/
+.headerContent img[src="images/logo.png"]{float: left;margin: 30px 0;}
+/*欢迎字体*/
+.welcome{font-size: 24px;float: left;margin: 40px 0 0 30px;color: #333333;}
+/*主体*/
+.main{width: 100%;}
+.mainContent{width: 1200px;overflow: hidden;margin: 0 auto;}
+/*底部*/
+.footer{width: 100%;color: #999999;}
+.footerContent{width: 1200px;overflow: hidden;margin: 0 auto;border-top: 1px solid #E6E6E6;}
+/*底部菜单*/
+.menu{width: 955px;overflow: hidden;margin: 30px auto 10px;}
+.menu li{margin-left: 15px;float: left;}
+.menu a{color: #999999;}
+.menu a:hover{text-decoration: underline;}
+.copyright{width: 400px;margin: 20px auto;text-align: center;}
+
+/*链接样式*/
+a{text-decoration: none;}
+
+/*列表样式*/
+ul{list-style: none;}
+
+/*按钮样式*/
+.bt_1{border: none;color: #FFFFFF;font-size: 16px;background-color: #E2231A;cursor: pointer;}
+.bt_1:hover{background-color: #C81623;}
